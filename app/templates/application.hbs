@@ -1,0 +1,24 @@
+<h1>Chef Tracker</h1>
+<p>Is your favorite {{title}} cooking right now?</p>
+<p id="explanation"> Find out with Chef Tracker, the hottest new {{title}}-tracking app on the market.</p>
+<p>We know some {{title}} are better than others, so we want to tell you who's cooking at our restaurant right now. Is it your favorite {{title}}? Then maybe you should visit!
+</p>
+<hr /> {{input value=title}}
+
+<ul>
+  {{#each chefs as |chef|}}
+      {{#if chef.isAvailable}}
+
+         <li class="available">
+           {{chef.name}} <button {{action 'exit' chef}}> exit </button>
+         </li>
+      {{else}}
+          <li class="not-available">
+            {{chef.name}} <button {{action 'enter' chef}}> enter </button>
+
+          </li>
+      {{/if}}
+
+
+  {{/each}}
+</ul>
