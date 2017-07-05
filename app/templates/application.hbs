@@ -3,22 +3,29 @@
 <p id="explanation"> Find out with Chef Tracker, the hottest new {{title}}-tracking app on the market.</p>
 <p>We know some {{title}} are better than others, so we want to tell you who's cooking at our restaurant right now. Is it your favorite {{title}}? Then maybe you should visit!
 </p>
+<!-- <p>
+  {{chefsOnStaff}} total Chefs
+</p> -->
+<p>
+  {{chefsOnSite.length}} of our {{chefsOnStaff}} Chefs are spitting in your food right now
+</p>
 <hr /> {{input value=title}}
 
 <ul>
   {{#each model as |chef|}}
-      {{#if chef.isAvailable}}
+    {{#if chef.isAvailable}}
 
-         <li class="available">
-           {{chef.name}} <button {{action 'exit' chef}}> exit </button>
-         </li>
-      {{else}}
-          <li class="not-available">
-            {{chef.name}} <button {{action 'enter' chef}}> enter </button>
-
-          </li>
-      {{/if}}
-
-
+      <li class="available">
+        {{chef.name}} <button {{action 'exit' chef}}> exit </button>
+      </li>
+    {{else}}
+      <li class="not-available">
+        {{chef.name}}
+        <button {{action 'enter' chef}}> enter </button>
+        <button {{action 'removeChef' chef}}>fire them</button>
+      </li>
+    {{/if}}
   {{/each}}
 </ul>
+<hr /> {{input value=newChef}}
+<button {{action 'addNewChef'}}>New Dude</button>
